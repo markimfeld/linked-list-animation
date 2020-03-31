@@ -4,15 +4,58 @@
         <title>Linked List Animation</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- STYLES -->
+        <link rel="stylesheet" href="extras/css/fontawesome.css">
+        <link rel="stylesheet" href="extras/css/normalize.css">
         <link rel="stylesheet" href="css/style.css">
-        
+        <!-- END STYLES -->
+        <!-- GOOGLE FONTS -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <!-- END GOOGLE FONTS -->
+        <!-- JS -->
+        <script src="js/main.js"></script>
+        <!-- END JS -->
+
     </head>
     <body>
         <header>
-            
+            <div class="sidenav"><i class="fas fa-bars fa-2x"></i></div>
+            <h1 class="site-title">Linked <span class="violet">List</span> Visualization</h1>
+            <div class="theme-switcher" id="btnThemeSwitcher">
+				<i class="fas fa-adjust fa-2x"></i>
+            </div>
         </header>
-        <main>
 
+        <main>
+            <div class="nodos-container">
+                <div id="node" class="node">
+                    <div class="data-node">2</div>
+                    <div class="pointer-node"><img src="images/arrowright.png"></div>
+                </div>
+            </div>
+
+            <div class="buttons-container">
+                <div class="groups">
+                    <button id="btnSet" class="btn-primary">Set</button>
+                    <input type="number" id="iSet" class="input-primary" placeholder="Index">
+                    <input type="number" id="dSet" class="input-primary" placeholder="Data">
+                </div>
+                <div class="groups">
+                    <button id="btnInsert" class="btn-primary">Insert</button>
+                    <input type="number" id="iInsert" class="input-primary" placeholder="Index">
+                    <input type="number" id="dInsert" class="input-primary" placeholder="Data">
+                </div>
+                <div class="groups">
+                    <button id="btnAdd" class="btn-primary">Add</button>
+                    <input type="number" id="iAdd" class="input-primary" placeholder="Index">
+                </div>
+                <div class="groups">
+                    <button id="btnRemove" class="btn-primary alert">Remove<i class="fas fa-cog"></i></button>
+                    <input type="number" id="iRemove" class="input-primary" placeholder="Index">
+                </div>
+            </div>
         </main>
     </body>
 </html>
