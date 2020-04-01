@@ -6,12 +6,14 @@
 body {
     background-color: #191919;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* #905FE8 */
 
 header {
-    max-width: 1200px;
+    width: 90%;
     padding: 20px 0;
     display: flex;
     align-items: center;
@@ -30,20 +32,18 @@ header::after {
 	left: 50%;
     position: absolute;
     transform: translate(-50%,0);
-    width: 110%;
+    width: 105%;
 }
 /* SIDENAV */
 .sidenav {
-    text-align: start;
     color: white;
-    /* flex: 0 5%; */
+    text-align: center;
 }
 /* SITE TITLE */
 .site-title {
     color: white;
-    margin: 0;
     text-align: center;
-    /* flex: 1 90%; */
+    margin: 0;
 }
 
 .violet {
@@ -52,15 +52,21 @@ header::after {
 }
 /* SWITCHER */
 .theme-switcher {
-    text-align: end;
+    text-align: center;
     color: white;
-    /* flex: 0 5%; */
     transition-duration: 200ms;
 }
 
 .theme-switcher:hover {
     color: rgb(196, 170, 243);
     transform: scale(1.1);
+}
+
+main {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
 }
 
 /********************************/
@@ -97,10 +103,7 @@ header::after {
     height: 2rem;
 }
 
-main {
-    max-width: 1200px;
-    margin: auto;
-}
+
 
 /*********************/
 /* buttons container */
@@ -108,23 +111,19 @@ main {
 
 /* row styles */
 .buttons-container {
-    max-width: 1200px;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin: 1rem auto;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    justify-content: space-between;
+    /* margin: 1rem auto; */
 }
 
 /* columns styles */
 .groups {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    margin: 0 .5rem;
+    /* flex-grow: 1; */
+    /* margin: 0 .5rem; */
 }
 
 /*********************/
@@ -171,3 +170,19 @@ main {
 
 
 
+/* Smartphone (pequeño)  */
+@media only all and (max-width: 317px) {
+
+}
+
+/* Tablet */
+@media only all and (max-width: 767px) and (min-width: 481px) {
+}
+
+/* Desktop */
+@media only all and (max-width: 1500px) and (min-width: 767px) {
+}
+
+/* Big Desktop */
+@media only all and (min-width: 1200px) {
+}
