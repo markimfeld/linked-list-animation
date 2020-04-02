@@ -7,7 +7,8 @@
         <!-- STYLES -->
         <link rel="stylesheet" href="extras/css/fontawesome.css">
         <link rel="stylesheet" href="extras/css/normalize.css">
-        <link rel="stylesheet" href="css/style.css">
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+        <link rel="stylesheet" href="css/style-grid.css">
         <!-- END STYLES -->
         <!-- GOOGLE FONTS -->
         <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
@@ -27,14 +28,16 @@
         </header>
 
         <main>
-            <div class="nodos-container">
+            <section class="nodos-container">
                 <div id="node" class="node">
                     <div class="data-node">2</div>
                     <div class="pointer-node"><img src="images/arrowright.png"></div>
                 </div>
-            </div>
-
-            <div class="buttons-container">
+            </section>
+            <section class="errors">
+                <p>Complete all fields</p>
+            </section>
+            <section class="buttons-container">
                 <div class="groups">
                     <button id="btnSet" class="btn-primary">Set</button>
                     <input type="number" id="iSet" class="input-primary" placeholder="Index">
@@ -53,7 +56,7 @@
                     <button id="btnRemove" class="btn-primary alert">Remove<i class="fas fa-cog"></i></button>
                     <input type="number" id="iRemove" class="input-primary" placeholder="Index">
                 </div>
-            </div>
+            </section>
         </main>
     </body>
 </html>
