@@ -1,188 +1,51 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+@import url("mobile-style.css");
+/* Medias queries */
+
+@media (min-width: 500px) {
+    .header {
+        grid-template-columns: 1fr 6fr 1fr;
+    }
+    .site-title {
+        font-size: 1.5rem;
+    }
+    .buttons-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-body {
-    background-color: #191919;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+@media (min-width: 700px) {
+    .site-title {
+        font-size: 2.5rem;
+    }
+    .buttons-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-/* #905FE8 */
+@media (min-width: 926px) {
+    .buttons-container {
+        grid-template-columns: repeat(4, 1fr);
+        align-self: center;
+    }
+    
+    .theme-switcher:hover {
+        color: rgb(196, 170, 243);
+        transform: scale(1.1);
+    }
 
-header {
-    width: 90%;
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-    position: relative;
-}
+    .btn-primary:hover {
+        transform: scale(1.04);
+    }
 
-header::after {
-    background: linear-gradient(to right , #0067ff, #6666ff);
-    bottom: 0;
-    content: '';
-    display: block;
-	height: 1px;
-	left: 50%;
-    position: absolute;
-    transform: translate(-50%,0);
-    width: 105%;
-}
-/* SIDENAV */
-.sidenav {
-    color: white;
-    text-align: center;
-}
-/* SITE TITLE */
-.site-title {
-    color: white;
-    text-align: center;
-    margin: 0;
-}
+    .btn-double:hover {
+        transform: scale(1.04);
+    }
 
-.violet {
-    color: #905FE8;
-    font-style: italic;
-}
-/* SWITCHER */
-.theme-switcher {
-    text-align: center;
-    color: white;
-    transition-duration: 200ms;
-}
+    .remove:hover {
+        border-right: 0.1px solid #444444;
+    }
 
-.theme-switcher:hover {
-    color: rgb(196, 170, 243);
-    transform: scale(1.1);
-}
-
-main {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-}
-
-/********************************/
-/*           nodos styles       */
-/********************************/
-
-/* nodos container */
-.nodos-container {
-    display: flex;
-}
-
-/* node style */
-.node {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: .5rem;
-}
-
-
-.data-node {
-    background-color: #905FE8;
-    padding: 1.6rem 1.9rem;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 50%;
-    margin-right: 0.3rem;
-}
-
-
-.pointer-node img {
-    width: 4rem;
-    height: 2rem;
-}
-
-
-
-/*********************/
-/* buttons container */
-/*********************/
-
-/* row styles */
-.buttons-container {
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /* margin: 1rem auto; */
-}
-
-/* columns styles */
-.groups {
-    display: flex;
-    flex-direction: column;
-    /* flex-grow: 1; */
-    /* margin: 0 .5rem; */
-}
-
-/*********************/
-/* buttons styles */
-/*********************/
-
-.btn-primary {
-    background: linear-gradient(to right, #0067ff, #8900e8);
-    padding: 0.8rem 0;
-    margin-bottom: 0.250rem;
-    border: none;
-    color: white;
-    font-size: 1.4rem;
-    font-weight: bold;
-    font-style: italic;
-    font-family: 'Livvic', sans-serif;
-    transition-duration: 200ms;
-}
-
-/* buttons hover styles */
-.btn-primary:hover {
-    transform: scale(1.04);
-}
-
-/* alert button remove */
-.alert {
-    background: linear-gradient(to right, #EF4427, #A02A15);
-}
-/* icon styles remove */
-.fas {
-    margin-left: 30%;
-}
-
-/* hover button settings remove */
-/* see how can do the border */
-
-/* inputs styles */
-.input-primary {
-    font-family: 'Livvic', sans-serif;
-    padding: .5rem .9rem;
-    margin: 0.250rem 0;
-    border: none;
-}
-
-
-
-/* Smartphone (pequeño)  */
-@media only all and (max-width: 317px) {
-
-}
-
-/* Tablet */
-@media only all and (max-width: 767px) and (min-width: 481px) {
-}
-
-/* Desktop */
-@media only all and (max-width: 1500px) and (min-width: 767px) {
-}
-
-/* Big Desktop */
-@media only all and (min-width: 1200px) {
+    .setting:hover {
+        border-left: 0.1px solid #444444;
+    }
 }
