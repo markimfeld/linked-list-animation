@@ -1,0 +1,231 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #191919;
+    height: 100vh;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    place-items: center;
+    height: 20vh;
+}
+
+/* SIDENAV */
+.sidenav {
+    color: white;
+    justify-self: center;
+}
+
+/* SITE TITLE */
+.site-title {
+    color: white;
+    margin: 0;
+    font-size: x-large;
+    text-align: center;
+}
+
+.violet {
+    color: #905FE8;
+    font-style: italic;
+}
+/* SWITCHER */
+.theme-switcher {
+    justify-self: center;
+    color: white;
+    transition-duration: 200ms;
+}
+
+/********************************/
+/*           nodos styles       */
+/********************************/
+
+/* nodos container */
+.nodos-container {
+    grid-area: content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    margin-left: .5em;
+}
+
+/* node style */
+.node {
+    display: flex;
+    align-items: center;
+}
+
+
+.data-node {
+    background-color: rgb(143, 94, 232);
+    padding: 1.6rem 1.9rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+}
+
+
+.pointer-node img {
+    width: 4rem;
+    height: 2rem;
+}
+
+/********************************/
+/*        erros msg styles      */
+/********************************/
+
+.errors {
+    color: brown;
+    font-size: 1.3rem;
+    grid-area: error;
+    align-self: center;
+}
+.errors p {
+    margin-left: .5em;
+}
+
+
+/*********************/
+/* buttons container */
+/*********************/
+
+/* row styles */
+.buttons-container {
+    /* child properties */
+    grid-area: footer;
+    align-self: center;
+    /* parent properties */
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: .5em;
+}
+
+.content {
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    row-gap: 2em;
+    grid-template-areas:
+        "content"
+        "error"
+        "footer";
+    height: 80vh;
+}
+
+/* columns styles */
+.groups {
+    display: flex;
+    flex-direction: column;
+    margin: 0 .5em;
+}
+
+/*********************/
+/* buttons styles */
+/*********************/
+
+.btn-primary {
+    background: linear-gradient(to right, #0067ff, #8900e8);
+    border: none;
+    padding: .5em 0;
+    margin-bottom: .2em;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Livvic', sans-serif;
+    transition: all 200ms ease-in-out;
+}
+
+.btn-double {
+    display: flex;
+    background: linear-gradient(to right, #EF4427, #A02A15);
+    transition: all 200ms ease-in-out;
+    margin-bottom: .2em;
+}
+
+.btn-secondary {
+    color: white;
+    padding: .5em 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Livvic', sans-serif;
+    background-color: transparent;
+    border: none;
+}
+
+.remove {
+    flex-grow: 2;
+}
+.setting{
+    flex-grow: 1;
+}
+
+/* hover button settings remove */
+/* see how can do the border */
+
+/* inputs styles */
+.input-primary {
+    font-family: 'Livvic', sans-serif;
+    border: none;
+    padding: .5em 0;
+    margin: .2em 0;
+}
+
+/* Medias queries */
+
+@media (min-width: 500px) {
+    .header {
+        grid-template-columns: 1fr 6fr 1fr;
+    }
+    .site-title {
+        font-size: 1.5rem;
+    }
+    .buttons-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 700px) {
+    .site-title {
+        font-size: 2.5rem;
+    }
+    .buttons-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 926px) {
+    .buttons-container {
+        grid-template-columns: repeat(4, 1fr);
+        align-self: center;
+    }
+    
+    .theme-switcher:hover {
+        color: rgb(196, 170, 243);
+        transform: scale(1.1);
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.04);
+    }
+
+    .btn-double:hover {
+        transform: scale(1.04);
+    }
+
+    .remove:hover {
+        border-right: 0.1px solid #444444;
+    }
+
+    .setting:hover {
+        border-left: 0.1px solid #444444;
+    }
+}
