@@ -4,6 +4,7 @@
 @media (min-width: 500px) {
     .header {
         grid-template-columns: 1fr 6fr 1fr;
+        height: 15vh;
     }
     .site-title {
         font-size: 1.5rem;
@@ -27,11 +28,6 @@
         grid-template-columns: repeat(4, 1fr);
         align-self: center;
     }
-    
-    .theme-switcher:hover {
-        color: rgb(196, 170, 243);
-        transform: scale(1.1);
-    }
 
     .btn-primary:hover {
         transform: scale(1.04);
@@ -49,3 +45,5 @@
         border-left: 0.1px solid #444444;
     }
 }
+
+
