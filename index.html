@@ -23,6 +23,23 @@
                 <i id="closeMenu" class="fas fa-times fa-1x"></i>
                 <h3 id="h3">Settings</h3>
             </div>
+            <div class="container-inputs">
+                <p>Node Animation Speed:</p>
+                <input type="number" id="node-speed" placeholder="Miliseconds">
+                <p>Pointer Animation Speed:</p>
+                <input type="number" id="pointer-speed" placeholder="Miliseconds">
+                <p>Delete Animation Speed:</p>
+                <input type="number" id="delete-speed" placeholder="Miliseconds">
+                <div class="messages">
+                    <div id="error-nav" class="error-message-nav">
+                        <i id="fa-exclamation-circle" class="fas fa-exclamation-circle"></i></i><span>Miliseconds cannot be negative</span>
+                    </div>
+                    <div id="save-nav" class="save-message">
+                        <i id="fa-check" class="fas fa-check"></i><span>Saved!</span>
+                    </div>
+                </div>
+            </div>
+            <button id="btnSave" class="btn-save">Save</button>
         </div>
 
         <header class="header">

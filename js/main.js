@@ -4,10 +4,13 @@ let btnCloseMenu = document.getElementById("closeMenu");
 let btnThemeSwitcher = document.getElementById("btnThemeSwitcher");
 let btnAdd = document.getElementById("btnAdd");
 let iAdd = document.getElementById("iAdd");
+let btnSave = document.getElementById("btnSave");
+
+let nodeAnimationTime = 500;
+let pointerAnimationTime = 500;
+let deleteAnimationTime = 500;
 
 
-let nodeAnimationTime = 200;
-let pointerAnimationTime = 200;
 
 function calculateTimeWaiting(len) {
     return (len * nodeAnimationTime) + (len * pointerAnimationTime) + (nodeAnimationTime + pointerAnimationTime);
@@ -98,4 +101,32 @@ btnThemeSwitcher.addEventListener("click", () => {
         btnThemeSwitcher.style.color = "white";
         document.getElementById("h1").style.color = "white";
     }
+});
+
+btnSave.addEventListener(("click"), () => {
+    let nodeSpeed = Number.parseInt(document.getElementById("node-speed").value);
+    let pointerSpeed = Number.parseInt(document.getElementById("pointer-speed").value);
+    let deleteSpeed = Number.parseInt(document.getElementById("delete-speed").value);
+    
+    let iconError = document.getElementById("fa-exclamation-circle");
+    let iconCheck = document.getElementById("fa-check");
+
+    if(nodeSpeed < 0 || pointerSpeed < 0 || deleteSpeed < 0 ){
+        let errors = document.getElementById("error-nav");
+        iconError.style.animation = `nodeZoom ${300}ms linear`;
+        errors.style.display = "block";
+        
+    } else {
+        nodeSpeed > 0 ? nodeAnimationTime = nodeSpeed : nodeAnimationTime = 500;
+        pointerSpeed > 0 ? pointerAnimationTime = pointerSpeed : pointerAnimationTime = 500;
+        deleteSpeed > 0 ? deleteAnimationTime = deleteSpeed : deleteAnimationTime = 500;
+        let saves = document.getElementById("save-nav");   
+        iconCheck.style.animation = `nodeZoom ${300}ms linear`;
+        saves.style.display = "block";
+    }
+
+    setTimeout(() => {
+        iconError.style.animation = "";
+        iconCheck.style.animation = "";
+    }, 300);
 });
