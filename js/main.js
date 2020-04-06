@@ -1,11 +1,13 @@
-
+let btnNav = document.getElementById("sidenav");
+let nav = document.getElementById("nav");
+let btnCloseMenu = document.getElementById("closeMenu");
 let btnThemeSwitcher = document.getElementById("btnThemeSwitcher");
 let btnAdd = document.getElementById("btnAdd");
 let iAdd = document.getElementById("iAdd");
 
 
-let nodeAnimationTime = 500;
-let pointerAnimationTime = 500;
+let nodeAnimationTime = 200;
+let pointerAnimationTime = 200;
 
 function calculateTimeWaiting(len) {
     return (len * nodeAnimationTime) + (len * pointerAnimationTime) + (nodeAnimationTime + pointerAnimationTime);
@@ -61,6 +63,24 @@ btnAdd.addEventListener(("click"), function() {
 
 
 
+btnNav.addEventListener("click", () => {
+    let header = document.querySelector("header");
+    let main = document.querySelector("main");
+    nav.style.animation = `openNav ${.6}s ease-in`;
+    nav.style.transform = `translateX(${0}%)`;
+    header.style.opacity = `${0.5}`;
+    main.style.opacity = `${0.5}`;
+});
+
+btnCloseMenu.addEventListener(("click"), () => {
+    let header = document.querySelector("header");
+    let main = document.querySelector("main");
+    nav.style.animation = `closeNav ${.5}s ease-in`;
+    nav.style.transform = `translateX(${-100}%)`;
+    document.body.style.opacity = `${1}`;
+    header.style.opacity = `${1}`;
+    main.style.opacity = `${1}`;
+});
 
 btnThemeSwitcher.addEventListener("click", () => {
     let bg = document.body.style.background;
@@ -71,11 +91,11 @@ btnThemeSwitcher.addEventListener("click", () => {
         sidenav.style.color = "black";
         btnThemeSwitcher.style.color = "black";
         document.getElementById("h1").style.color = "black";
-    } else {
+    } 
+    else {
         document.body.style.background = "#191919";
         sidenav.style.color = "white";
         btnThemeSwitcher.style.color = "white";
         document.getElementById("h1").style.color = "white";
     }
-    
 });
