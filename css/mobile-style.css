@@ -9,13 +9,10 @@ body {
 }
 
 .sidenav {
-    width: 70%;
+    width: 40vh;
     height: 100vh;
     background: #323232;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
     z-index: 100;
     display: grid;
     grid-template-columns: 1fr;
@@ -37,16 +34,16 @@ body {
 .title::after {
     content: "";
     display: block;
-    width: 85%;
+    width: 80%;
     height: 1px;
-    bottom: 0;
+    bottom: 3em;
     background-color: white;
     position: absolute;
 }
 
 #h3 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .header {

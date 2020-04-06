@@ -2,9 +2,6 @@
 /* Medias queries */
 
 @media (min-width: 500px) {
-    .sidenav {
-        width: 65%;
-    }
     .header {
         grid-template-columns: 1fr 6fr 1fr;
         height: 15vh;
@@ -18,9 +15,6 @@
 }
 
 @media (min-width: 700px) {
-    .sidenav {
-        width: 35%;
-    }
     .site-title {
         font-size: 2.5rem;
     }
@@ -30,9 +24,6 @@
 }
 
 @media (min-width: 926px) {
-    .sidenav {
-        width: 30%;
-    }
     .buttons-container {
         grid-template-columns: repeat(4, 1fr);
         align-self: center;
