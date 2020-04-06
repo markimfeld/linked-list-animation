@@ -8,6 +8,25 @@ body {
     height: 100vh;
 }
 
+.sidenav {
+    width: 20%;
+    height: 100vh;
+    background: #323232;
+    position: absolute;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.sidenav h3 {
+    font-size: 1.8rem;
+}
+
+.fas, .fa-window-close {
+    text-align: start;
+}
+
 .header {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
@@ -216,7 +235,7 @@ body {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.1);
+        transform: scale(1.2);
     }
     100% {
         transform: scale(1);

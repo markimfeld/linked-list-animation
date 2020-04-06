@@ -18,42 +18,47 @@
 
     </head>
     <body>
-            <header class="header">
-                <div id="sidenav" class="sidenav"><i class="fas fa-bars fa-2x"></i></div>
-                <h1 id="h1" class="site-title">Linked <span class="violet">List</span> Visualization</h1>
-                <div class="theme-switcher" id="btnThemeSwitcher"><i class="fas fa-adjust fa-2x"></i></div>
-            </header>
-    
-            <main class="content">
-                <section id="lista" class="lista"><div class="node"><div class="data-node">2</div><div class="pointer-node"><img src="images/arrowright.png"></div></div></section>
-                <section class="errors">
-                    <!-- <p id="errors"><i class="fas fa-exclamation-circle"></i> Complete all fields</p> -->
-                </section>
-                <section class="buttons-container">
-                    <div class="groups">
-                        <button id="btnSet" class="btn-primary">Set</button>
-                        <input type="number" id="iSet" class="input-primary" placeholder="Index">
-                        <input type="number" id="dSet" class="input-primary" placeholder="Data">
+        <div class="sidenav">
+            <h3><i class="fas fa-window-close"></i> Settings</h3>
+        </div>
+
+        <header class="header">
+            <div></div>
+            <!-- <div id="sidenav" class="sidenav"><i class="fas fa-bars fa-2x"></i></div> -->
+            <h1 id="h1" class="site-title">Linked <span class="violet">List</span> Visualization</h1>
+            <div class="theme-switcher" id="btnThemeSwitcher"><i class="fas fa-adjust fa-2x"></i></div>
+        </header>
+
+        <main class="content">
+            <section id="lista" class="lista"><div class="node"><div class="data-node">2</div><div class="pointer-node"><img src="images/arrowright.png"></div></div></section>
+            <section class="errors">
+                <!-- <p id="errors"><i class="fas fa-exclamation-circle"></i> Complete all fields</p> -->
+            </section>
+            <section class="buttons-container">
+                <div class="groups">
+                    <button id="btnSet" class="btn-primary">Set</button>
+                    <input type="number" id="iSet" class="input-primary" placeholder="Index">
+                    <input type="number" id="dSet" class="input-primary" placeholder="Data">
+                </div>
+                <div class="groups">
+                    <button id="btnInsert" class="btn-primary">Insert</button>
+                    <input type="number" id="iInsert" class="input-primary" placeholder="Index">
+                    <input type="number" id="dInsert" class="input-primary" placeholder="Data">
+                </div>
+                <div class="groups">
+                    <button id="btnAdd" class="btn-primary">Add</button>
+                    <input type="number" id="iAdd" class="input-primary" placeholder="Index">
+                </div>
+                <div class="groups">
+                    <div class="btn-double">
+                        <button id="btnRemove" class="btn-secondary remove">Remove</button>
+                        <button id="settingRemove" class="btn-secondary setting"><i id="settingRemove" class="fas fa-cog"></i></button>
                     </div>
-                    <div class="groups">
-                        <button id="btnInsert" class="btn-primary">Insert</button>
-                        <input type="number" id="iInsert" class="input-primary" placeholder="Index">
-                        <input type="number" id="dInsert" class="input-primary" placeholder="Data">
-                    </div>
-                    <div class="groups">
-                        <button id="btnAdd" class="btn-primary">Add</button>
-                        <input type="number" id="iAdd" class="input-primary" placeholder="Index">
-                    </div>
-                    <div class="groups">
-                        <div class="btn-double">
-                            <button id="btnRemove" class="btn-secondary remove">Remove</button>
-                            <button id="settingRemove" class="btn-secondary setting"><i id="settingRemove" class="fas fa-cog"></i></button>
-                        </div>
-                        <input type="number" id="iRemove" class="input-primary" placeholder="Index">
-                        <input type="number" id="dRemove" class="input-primary" placeholder="Data">
-                    </div>
-                </section>
-            </main>
+                    <input type="number" id="iRemove" class="input-primary" placeholder="Index">
+                    <input type="number" id="dRemove" class="input-primary" placeholder="Data">
+                </div>
+            </section>
+        </main>
 
         <!-- JS -->
         <script src="js/main.js"></script>
