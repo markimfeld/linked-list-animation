@@ -5,6 +5,7 @@ let btnThemeSwitcher = document.getElementById("btnThemeSwitcher");
 let btnAdd = document.getElementById("btnAdd");
 let iAdd = document.getElementById("iAdd");
 let btnSave = document.getElementById("btnSave");
+let btnSettingRemove = document.getElementById("settingRemove");
 
 let nodeAnimationTime = 500;
 let pointerAnimationTime = 500;
@@ -100,6 +101,28 @@ btnThemeSwitcher.addEventListener("click", () => {
         sidenav.style.color = "white";
         btnThemeSwitcher.style.color = "white";
         document.getElementById("h1").style.color = "white";
+    }
+});
+
+btnSettingRemove.addEventListener("click", () => {
+    let iRemove = document.getElementById("iRemove");
+    let dRemove = document.getElementById("dRemove");
+    let iconSettings = document.getElementById("icon-settings");
+
+    if(iRemove.style.display !== "block" && dRemove.style.display !== "block") {
+        iRemove.style.display = "block";
+        dRemove.style.display = "block";
+        iconSettings.style.animation = `rotateSettingsLeft ${.8}s ease-in-out`;
+        iRemove.style.animation = `openInputIndexRemove ${.6}s ease-in-out`;
+        dRemove.style.animation = `openInputDataRemove ${.58}s ease-in-out`;   
+    } else {
+        iconSettings.style.animation = `rotateSettingsRight ${.8}s ease-in-out`;
+        iRemove.style.animation = `closeInputIndexRemove ${.6}s ease-in-out`;
+        dRemove.style.animation = `closeInputDataRemove ${.58}s ease-in-out`;
+        setTimeout(() => {
+            iRemove.style.display = "none";
+            dRemove.style.display = "none";
+        },500);
     }
 });
 

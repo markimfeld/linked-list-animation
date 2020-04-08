@@ -276,7 +276,7 @@ body {
     display: flex;
     background: linear-gradient(to right, #EF4427, #A02A15);
     transition: all 200ms ease-in-out;
-    margin-bottom: .2em;
+    z-index: 1;
 }
 
 .btn-secondary {
@@ -309,6 +309,20 @@ body {
     margin: .2em 0;
 }
 
+.input-secondary {
+    font-family: 'Livvic', sans-serif;
+    padding: 0.3em 0;
+    padding-left: 1em;
+    border: .5px solid #ccc;
+    width: 97%;
+    margin: 0 auto;
+    display: block;
+    z-index: -1;
+}
+
+#iRemove, #dRemove {
+    display: none;
+}
 
 /* Animations */
 
@@ -378,5 +392,67 @@ body {
     }
     100% {
         transform: translateX(-100%);
+    }
+}
+
+@keyframes openInputIndexRemove {
+    0% {
+        transform: translateY(-100%);
+        z-index: -1;
+    }
+    100% {
+        z-index: -1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes openInputDataRemove {
+    0% {
+        transform: translateY(-200%);
+        z-index: -2;
+    }
+    100% {
+        z-index: -2;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes closeInputIndexRemove {
+    0% {
+        transform: translateY(0%);
+        z-index: -2;
+    }
+    100% {
+        z-index: -2;
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes closeInputDataRemove {
+    0% {
+        transform: translateY(0%);
+        z-index: -1;
+    }
+    100% {
+        z-index: -1;
+        transform: translateY(-200%);
+    }
+}
+
+@keyframes rotateSettingsLeft {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-180deg);
+    }
+}
+
+@keyframes rotateSettingsRight {
+    0% {
+        transform: rotate(-180deg);
+    }
+    100% {
+        transform: rotate(0deg);
     }
 }
