@@ -38,12 +38,16 @@ function createNode() {
 
 
 btnAdd.addEventListener(("click"), function() {
+
     let lista = document.getElementById("lista");
     let len = lista.childNodes.length;
+    
+    
     let i = 0;
     let idTimer = setInterval(function() {
         lista.childNodes[i].firstChild.style.animation = `nodeZoom ${nodeAnimationTime}ms ease-in-out`;
         setTimeout(() => {
+            lista.childNodes[i].lastChild.classList.remove("animation-pointer-node");
             lista.childNodes[i].lastChild.style.animation = `upDownArrow ${pointerAnimationTime}ms ease-in-out`;
             i++;
         }, 	nodeAnimationTime);
@@ -62,6 +66,7 @@ btnAdd.addEventListener(("click"), function() {
         lista.appendChild(createNode());
     }, calculateTimeWaiting(len)); 
 });
+
 
 
 
@@ -105,25 +110,45 @@ btnThemeSwitcher.addEventListener("click", () => {
 });
 
 btnSettingRemove.addEventListener("click", () => {
+    let btnIndexRemove = document.getElementById("btnIndexSelect");
+    let btnDataRemove = document.getElementById("btnDataSelect");
+    let iconSettings = document.getElementById("icon-settings");
     let iRemove = document.getElementById("iRemove");
     let dRemove = document.getElementById("dRemove");
-    let iconSettings = document.getElementById("icon-settings");
 
-    if(iRemove.style.display !== "block" && dRemove.style.display !== "block") {
-        iRemove.style.display = "block";
-        dRemove.style.display = "block";
+    iRemove.style.display = "none";
+    dRemove.style.display = "none";
+
+    if(btnIndexRemove.style.display !== "block" && btnDataRemove.style.display !== "block") {
+        btnIndexRemove.style.display = "block";
+        btnDataRemove.style.display = "block";
         iconSettings.style.animation = `rotateSettingsLeft ${.8}s ease-in-out`;
-        iRemove.style.animation = `openInputIndexRemove ${.6}s ease-in-out`;
-        dRemove.style.animation = `openInputDataRemove ${.58}s ease-in-out`;   
+        btnIndexRemove.style.animation = `openInputIndexRemove ${.6}s ease-in-out`;
+        btnDataRemove.style.animation = `openInputDataRemove ${.58}s ease-in-out`;   
     } else {
         iconSettings.style.animation = `rotateSettingsRight ${.8}s ease-in-out`;
-        iRemove.style.animation = `closeInputIndexRemove ${.6}s ease-in-out`;
-        dRemove.style.animation = `closeInputDataRemove ${.58}s ease-in-out`;
+        btnIndexRemove.style.animation = `closeInputIndexRemove ${.6}s ease-in-out`;
+        btnDataRemove.style.animation = `closeInputDataRemove ${.58}s ease-in-out`;
         setTimeout(() => {
-            iRemove.style.display = "none";
-            dRemove.style.display = "none";
+            btnIndexRemove.style.display = "none";
+            btnDataRemove.style.display = "none";
         },500);
     }
+
+    btnIndexRemove.addEventListener(("click"), () => {
+        iRemove.style.display = "block";
+        dRemove.style.display = "none";
+
+        btnIndexRemove.style.display = "none";
+        btnDataRemove.style.display = "none";
+    });
+    btnDataRemove.addEventListener(("click"), () => {
+        iRemove.style.display = "none";
+        dRemove.style.display = "block";
+
+        btnIndexRemove.style.display = "none";
+        btnDataRemove.style.display = "none";
+    });
 });
 
 btnSave.addEventListener(("click"), () => {

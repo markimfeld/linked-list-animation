@@ -48,8 +48,8 @@
             <div class="theme-switcher" id="btnThemeSwitcher"><i class="fas fa-adjust fa-2x"></i></div>
         </header>
 
-        <main class="content">
-            <section id="lista" class="lista"><div class="node"><div class="data-node">2</div><div class="pointer-node"><img src="images/arrowright.png"></div></div></section>
+        <main id="main-content" class="content">
+            <section id="lista" class="lista"><div class="node"><div class="data-node">2</div><div class="pointer-node animation-pointer-node"><img src="images/arrowright.png"></div></div></section>
             <section class="errors">
                 <!-- <p id="errors"><i class="fas fa-exclamation-circle"></i> Complete all fields</p> -->
             </section>
@@ -73,9 +73,11 @@
                         <button id="btnRemove" class="btn-secondary remove">Remove</button>
                         <button id="settingRemove" class="btn-secondary setting"><i id="icon-settings" class="fas fa-cog"></i></button>
                     </div>
-                    <div>
-                        <input type="number" id="iRemove" class="input-secondary" placeholder="Index">
-                        <input type="number" id="dRemove" class="input-secondary" placeholder="Data">
+                    <div class="container-btns">
+                        <button id="btnIndexSelect" class="btn-selec-remove">Index</button>
+                        <button id="btnDataSelect" class="btn-selec-remove">Data</button>
+                        <input type="number" id="iRemove" class="input-primary input-remove" placeholder="Index">
+                        <input type="number" id="dRemove" class="input-primary input-remove" placeholder="Data">
                     </div>
                 </div>
             </section>
