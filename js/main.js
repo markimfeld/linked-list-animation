@@ -49,14 +49,16 @@ function createNode(value) {
 btnSet.addEventListener(("click"), function () {
     let idIndex = "iSet";
     let idData = "dSet";
+    fillError.style.opacity = "0";
+
     if (!isEmpty(idIndex) && !isEmpty(idData)) {
         let lista = document.getElementById("lista");
         let len = lista.childNodes.length;
         let index = Number.parseInt(document.getElementById(idIndex).value);
         let value = Number.parseInt(document.getElementById(idData).value);
-
+        indexOutBound.style.opacity = "0";
         if (index < len) {
-            // NEW NODE 
+            // NEW NODE
             let newNode = createNode(value);
             // END NEW NODE
 
@@ -76,7 +78,7 @@ btnSet.addEventListener(("click"), function () {
                             clearInterval(idTimer);
                         }
                     }, nodeAnimationTime + pointerAnimationTime);
-                    
+
                     for (let i = 0; i < len; i++) {
                         lista.childNodes[i].firstChild.style.animation = "";
                         lista.childNodes[i].lastChild.style.animation = "";
@@ -100,14 +102,15 @@ btnSet.addEventListener(("click"), function () {
 btnInsert.addEventListener(("click"), function () {
     let idIndex = "iInsert";
     let idData = "dInsert";
+    fillError.style.opacity = "0";
     if (!isEmpty(idIndex) && !isEmpty(idData)) {
         let lista = document.getElementById("lista");
         let len = lista.childNodes.length;
         let index = Number.parseInt(document.getElementById(idIndex).value);
         let value = Number.parseInt(document.getElementById(idData).value);
-
+        indexOutBound.style.opacity = "0";
         if (index < len + 1) {
-            // NEW NODE 
+            // NEW NODE
             let newNode = createNode(value);
             // END NEW NODE
 
@@ -154,6 +157,7 @@ btnAdd.addEventListener(("click"), function () {
     let lista = document.getElementById("lista");
     let len = lista.childNodes.length;
 
+    fillError.style.opacity = "0";
 
     if (!isEmpty(id)) {
         let i = 0;
@@ -184,35 +188,103 @@ btnAdd.addEventListener(("click"), function () {
 });
 
 btnRemove.addEventListener(("click"), function () {
-    let lista = document.getElementById("lista").childNodes;
-    let len = lista.length;
+    let lista = document.getElementById("lista");
+    let len = lista.childNodes.length;
     let iRemove = document.getElementById("iRemove");
     let dRemove = document.getElementById("dRemove");
 
+    fillError.style.opacity = "0";
+    indexOutBound.style.opacity = "0";
+
     if (iRemove.style.display === "block" && dRemove.style.display === "none") {
-        let index = Number.parseInt(iRemove.value);
+        if (!isEmpty("iRemove")) {
+            if (iRemove.value < len) {
 
-        let node = lista[index];
+                let index = Number.parseInt(iRemove.value);
+                let node = lista.childNodes[index];
 
-        node.style.animation = `nodeOut ${.5}s ease-in-out`;
+                if (index > 0) {
+                    let i = 0;
+                    let idTimer = setInterval(() => {
+                        lista.childNodes[i].childNodes[0].style.animation = `nodeZoom ${nodeAnimationTime}ms ease-in-out`;
+                        setTimeout(() => {
+                            lista.childNodes[i].childNodes[1].classList.remove("animation-pointer-node");
+                            lista.childNodes[i].childNodes[1].style.animation = `upDownArrow ${pointerAnimationTime}ms ease-in-out`;
+                            i++;
+                        }, nodeAnimationTime);
 
-        setTimeout(() => {
-            node.remove();
-        }, 500);
+                        if (i === index - 1) {
+                            clearInterval(idTimer);
+                        }
+                    }, nodeAnimationTime + pointerAnimationTime);
+
+                    for (let i = 0; i < len; i++) {
+                        lista.childNodes[i].firstChild.style.animation = "";
+                        lista.childNodes[i].lastChild.style.animation = "";
+                    }
+                }
+
+                setTimeout(() => {
+                    node.style.animation = `nodeOut ${deleteAnimationTime}ms ease-in-out`;
+                    setTimeout(() => {
+                        node.remove();
+                    }, deleteAnimationTime);
+                }, calculateTimeWaiting(len));
+            } else {
+                indexOutBound.style.opacity = "1";
+            }
+        } else {
+            fillError.style.opacity = "1";
+        }
     } else if (iRemove.style.display === "none" && dRemove.style.display === "block") {
-        let data = Number.parseInt(dRemove.value);
+        if (!isEmpty("dRemove")) {
+            let data = Number.parseInt(dRemove.value);
 
-        let i = 0;
-        let iTimer = setInterval(() => {
-            if (lista[i].firstChild.innerHTML == data) {
-                lista[i].remove();
+            let nodesToDelete = 0;
+            for(let i = 0; i < len; i++) {
+                if (Number.parseInt(lista.childNodes[i].firstChild.innerHTML) === data) {
+                    nodesToDelete++;
+                }
             }
-            i++;
 
-            if (i >= len) {
-                clearInterval(iTimer);
+            let countDeleted = 0;
+            let before;
+            let i = 0;
+            let idTimer = setInterval(() => {
+
+                if (lista.childNodes[i] != null) {
+                    if (Number.parseInt(lista.childNodes[i].firstChild.innerHTML) === data) {
+                        lista.childNodes[i].style.animation = `nodeOut ${deleteAnimationTime}ms ease-in-out`;
+                        setTimeout(() => {
+                            lista.childNodes[i].remove();
+                            countDeleted++;
+                        }, deleteAnimationTime);
+                    } else if(countDeleted < nodesToDelete) {
+                        lista.childNodes[i].childNodes[0].style.animation = `nodeZoom ${nodeAnimationTime}ms ease-in-out`;
+                        setTimeout(() => {
+                            lista.childNodes[i].childNodes[1].classList.remove("animation-pointer-node");
+                            lista.childNodes[i].childNodes[1].style.animation = `upDownArrow ${pointerAnimationTime}ms ease-in-out`;
+                            before = i;
+                            i++;
+                        }, nodeAnimationTime);
+                    }
+                } else {
+                    i = len;
+                }
+
+                if (i === len) {
+                    clearInterval(idTimer);
+                }
+            }, nodeAnimationTime + pointerAnimationTime);
+
+            for (let i = 0; i < len; i++) {
+                lista.childNodes[i].firstChild.style.animation = "";
+                lista.childNodes[i].lastChild.style.animation = "";
             }
-        }, 0);
+
+        } else {
+            fillError.style.opacity = "1";
+        }
     } else {
         alert("Choose index mode or data mode!");
     }
