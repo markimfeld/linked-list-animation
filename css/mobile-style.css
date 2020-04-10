@@ -213,14 +213,17 @@ body {
 /********************************/
 
 .errors {
-    color: brown;
+    color: red;
     font-size: 1.3rem;
     grid-area: error;
     align-self: center;
 }
 .errors p {
     margin-left: .5em;
+    opacity: 0;
+    transition-duration: 300ms;
 }
+
 
 
 /*********************/
@@ -367,6 +370,18 @@ body {
     }
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes nodeOut {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(0.2);
     }
 }
 

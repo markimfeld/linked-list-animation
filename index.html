@@ -14,8 +14,6 @@
         <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
         <!-- END GOOGLE FONTS -->
-        
-
     </head>
     <body>
         <div id="nav" class="sidenav">
@@ -50,8 +48,9 @@
 
         <main id="main-content" class="content">
             <section id="lista" class="lista"><div class="node"><div class="data-node">2</div><div class="pointer-node animation-pointer-node"><img src="images/arrowright.png"></div></div></section>
-            <section class="errors">
-                <!-- <p id="errors"><i class="fas fa-exclamation-circle"></i> Complete all fields</p> -->
+            <section id="errors" class="errors">
+                <p id="fill-field"><i class="fas fa-exclamation-circle"></i> Fill the field!</p>
+                <p id="index-out-bound"><i class="fas fa-exclamation-circle"></i> Index out of bound!</p>
             </section>
             <section class="buttons-container">
                 <div class="groups">
@@ -66,7 +65,7 @@
                 </div>
                 <div class="groups">
                     <button id="btnAdd" class="btn-primary">Add</button>
-                    <input type="number" id="iAdd" class="input-primary" placeholder="Index">
+                    <input type="number" id="iAdd" class="input-primary" placeholder="Data">
                 </div>
                 <div class="groups">
                     <div class="btn-double">
