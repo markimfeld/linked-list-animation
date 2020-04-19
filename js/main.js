@@ -17,6 +17,10 @@ let nodeAnimationTime = 500;
 let pointerAnimationTime = 500;
 let deleteAnimationTime = 500;
 
+const NODE_ANIMATION_IN = 'nodeZoom';
+const POINTER_ANIMATION = 'upDownArrow';
+const NODE_ANIMATION_OUT = 'nodeOut';
+
 function isEmpty(id) {
   let input = document.getElementById(id).value;
   if (input === "") return true;
@@ -31,16 +35,20 @@ function calculateTimeWaiting(len) {
   );
 }
 
+function animate(node, time, animation) {
+  node.style.animation = `${animation} ${time}ms ease-in-out`;
+}
+
 function createNode(value) {
   let node = document.createElement("div");
   node.classList.add("node");
   let dataNode = document.createElement("div");
   dataNode.classList.add("data-node");
-  dataNode.style.animation = `nodeAppears ${nodeAnimationTime}ms ease-in-out`;
+  animate(dataNode, nodeAnimationTime, 'nodeAppears');
   dataNode.innerHTML = value;
   let pointerNode = document.createElement("div");
   pointerNode.classList.add("pointer-node");
-  pointerNode.style.animation = `rightArrow ${pointerAnimationTime}ms ease-in-out`;
+  animate(pointerNode, pointerAnimationTime, 'rightArrow');
   let imgPointer = document.createElement("img");
   imgPointer.src = "images/arrowright.png";
   pointerNode.appendChild(imgPointer);
@@ -48,6 +56,21 @@ function createNode(value) {
   node.appendChild(dataNode);
   node.appendChild(pointerNode);
   return node;
+}
+
+const animateNode = async (node, animation = NODE_ANIMATION_IN, time = nodeAnimationTime) => {
+  node.style.animation = `${animation} ${time}ms ease-in-out`;
+}
+
+const animatePointer = async arrow => {
+  setTimeout(() => {
+    arrow.classList.remove('animation-pointer-node');
+    arrow.style.animation = `${POINTER_ANIMATION} ${pointerAnimationTime}ms ease-in-out`;
+  }, nodeAnimationTime);
+}
+
+const cleanAnimation = element => {
+  element.style.animation = '';
 }
 
 btnSet.addEventListener("click", function () {
@@ -71,18 +94,11 @@ btnSet.addEventListener("click", function () {
         let i = 0;
         if (index !== 0) {
           let idTimer = setInterval(() => {
-            lista.childNodes[
-              i
-            ].firstChild.style.animation = `nodeZoom ${nodeAnimationTime}ms ease-in-out`;
-            setTimeout(() => {
-              lista.childNodes[i].lastChild.classList.remove(
-                "animation-pointer-node"
-              );
-              lista.childNodes[
-                i
-              ].lastChild.style.animation = `upDownArrow ${pointerAnimationTime}ms ease-in-out`;
-              i++;
-            }, nodeAnimationTime);
+            animateNode(lista.childNodes[i].firstChild)
+              .then(() => {
+                return animatePointer(lista.childNodes[i].lastChild)
+              })
+              .then(() => i++);
 
             if (i === index - 1) {
               clearInterval(idTimer);
@@ -90,8 +106,8 @@ btnSet.addEventListener("click", function () {
           }, nodeAnimationTime + pointerAnimationTime);
 
           for (let i = 0; i < len; i++) {
-            lista.childNodes[i].firstChild.style.animation = "";
-            lista.childNodes[i].lastChild.style.animation = "";
+            cleanAnimation(lista.childNodes[i].firstChild);
+            cleanAnimation(lista.childNodes[i].lastChild);
           }
 
           setTimeout(() => {
@@ -129,26 +145,19 @@ btnInsert.addEventListener("click", function () {
         let i = 0;
         if (index !== 0) {
           let idTimer = setInterval(() => {
-            lista.childNodes[
-              i
-            ].firstChild.style.animation = `nodeZoom ${nodeAnimationTime}ms ease-in-out`;
-            setTimeout(() => {
-              lista.childNodes[i].lastChild.classList.remove(
-                "animation-pointer-node"
-              );
-              lista.childNodes[
-                i
-              ].lastChild.style.animation = `upDownArrow ${pointerAnimationTime}ms ease-in-out`;
-              i++;
-            }, nodeAnimationTime);
+            animateNode(lista.childNodes[i].firstChild)
+              .then(() => {
+                return animatePointer(lista.childNodes[i].lastChild)
+              })
+              .then(() => i++);
 
             if (i === index - 1) {
               clearInterval(idTimer);
             }
           }, nodeAnimationTime + pointerAnimationTime);
           for (let i = 0; i < len; i++) {
-            lista.childNodes[i].firstChild.style.animation = "";
-            lista.childNodes[i].lastChild.style.animation = "";
+            cleanAnimation(lista.childNodes[i].firstChild);
+            cleanAnimation(lista.childNodes[i].lastChild);
           }
 
           setTimeout(() => {
@@ -168,7 +177,7 @@ btnInsert.addEventListener("click", function () {
   }
 });
 
-btnAdd.addEventListener("click", function () {
+btnAdd.addEventListener("click", () => {
   let id = "iAdd";
   let lista = document.getElementById("lista");
   let len = lista.childNodes.length;
@@ -176,28 +185,32 @@ btnAdd.addEventListener("click", function () {
   fillError.style.opacity = "0";
 
   if (!isEmpty(id)) {
-    let i = 0;
-    let idTimer = setInterval(function () {
-      lista.childNodes[i].firstChild.style.animation = `nodeZoom ${nodeAnimationTime}ms ease-in-out`;
-      setTimeout(() => {
-        lista.childNodes[i].lastChild.classList.remove("animation-pointer-node");
-        lista.childNodes[i].lastChild.style.animation = `upDownArrow ${pointerAnimationTime}ms ease-in-out`;
-        i++;
-      }, nodeAnimationTime);
+    if (len > 0) {
+      let i = 0;
+      let cicle = setInterval(() => {
+        animateNode(lista.childNodes[i].firstChild)
+          .then(() => {
+            return animatePointer(lista.childNodes[i].lastChild)
+          })
+          .then(() => i++);
 
-      if (i >= len - 1) {
-        clearInterval(idTimer);
+        if (i >= len - 1) {
+          clearInterval(cicle);
+        }
+      }, nodeAnimationTime + pointerAnimationTime);
+
+      for (let i = 0; i < len; i++) {
+        cleanAnimation(lista.childNodes[i].firstChild);
+        cleanAnimation(lista.childNodes[i].lastChild);
       }
-    }, nodeAnimationTime + pointerAnimationTime);
 
-    for (let i = 0; i < len; i++) {
-      lista.childNodes[i].firstChild.style.animation = "";
-      lista.childNodes[i].lastChild.style.animation = "";
+      setTimeout(() => {
+        lista.appendChild(createNode(iAdd.value));
+      }, calculateTimeWaiting(len));
+    } else {
+      lista.appendChild(createNode(iAdd.value));
     }
 
-    setTimeout(() => {
-      lista.appendChild(createNode(iAdd.value));
-    }, calculateTimeWaiting(len));
   } else {
     fillError.style.opacity = "1";
   }
@@ -221,18 +234,11 @@ btnRemove.addEventListener("click", function () {
         if (index > 0) {
           let i = 0;
           let idTimer = setInterval(() => {
-            lista.childNodes[
-              i
-            ].childNodes[0].style.animation = `nodeZoom ${nodeAnimationTime}ms ease-in-out`;
-            setTimeout(() => {
-              lista.childNodes[i].childNodes[1].classList.remove(
-                "animation-pointer-node"
-              );
-              lista.childNodes[
-                i
-              ].childNodes[1].style.animation = `upDownArrow ${pointerAnimationTime}ms ease-in-out`;
-              i++;
-            }, nodeAnimationTime);
+            animateNode(lista.childNodes[i].firstChild)
+              .then(() => {
+                return animatePointer(lista.childNodes[i].lastChild);
+              })
+              .then(() => i++);
 
             if (i === index - 1) {
               clearInterval(idTimer);
@@ -240,13 +246,13 @@ btnRemove.addEventListener("click", function () {
           }, nodeAnimationTime + pointerAnimationTime);
 
           for (let i = 0; i < len; i++) {
-            lista.childNodes[i].firstChild.style.animation = "";
-            lista.childNodes[i].lastChild.style.animation = "";
+            cleanAnimation(lista.childNodes[i].firstChild);
+            cleanAnimation(lista.childNodes[i].lastChild);
           }
         }
 
         setTimeout(() => {
-          node.style.animation = `nodeOut ${deleteAnimationTime}ms ease-in-out`;
+          animateNode(node, NODE_ANIMATION_OUT, deleteAnimationTime);
           setTimeout(() => {
             node.remove();
           }, deleteAnimationTime);
@@ -281,27 +287,20 @@ btnRemove.addEventListener("click", function () {
           if (
             Number.parseInt(lista.childNodes[i].firstChild.innerHTML) === data
           ) {
-            lista.childNodes[
-              i
-            ].style.animation = `nodeOut ${deleteAnimationTime}ms ease-in-out`;
+            animateNode(lista.childNodes[i], NODE_ANIMATION_OUT, deleteAnimationTime);
             setTimeout(() => {
               lista.childNodes[i].remove();
               countDeleted++;
             }, deleteAnimationTime);
           } else if (countDeleted < nodesToDelete) {
-            lista.childNodes[
-              i
-            ].childNodes[0].style.animation = `nodeZoom ${nodeAnimationTime}ms ease-in-out`;
-            setTimeout(() => {
-              lista.childNodes[i].childNodes[1].classList.remove(
-                "animation-pointer-node"
-              );
-              lista.childNodes[
-                i
-              ].childNodes[1].style.animation = `upDownArrow ${pointerAnimationTime}ms ease-in-out`;
-              before = i;
-              i++;
-            }, nodeAnimationTime);
+            animateNode(lista.childNodes[i].firstChild)
+              .then(() => {
+                return animatePointer(lista.childNodes[i].lastChild);
+              })
+              .then(() => {
+                before = i;
+                i++;
+              });
           }
         } else {
           i = len;
@@ -313,8 +312,8 @@ btnRemove.addEventListener("click", function () {
       }, nodeAnimationTime + pointerAnimationTime);
 
       for (let i = 0; i < len; i++) {
-        lista.childNodes[i].firstChild.style.animation = "";
-        lista.childNodes[i].lastChild.style.animation = "";
+        cleanAnimation(lista.childNodes[i].firstChild);
+        cleanAnimation(lista.childNodes[i].lastChild);
       }
     } else {
       fillError.style.opacity = "1";
