@@ -21,13 +21,13 @@ const NODE_ANIMATION_IN = 'nodeZoom';
 const POINTER_ANIMATION = 'upDownArrow';
 const NODE_ANIMATION_OUT = 'nodeOut';
 
-function isEmpty(id) {
+const isEmpty = id => {
   let input = document.getElementById(id).value;
   if (input === "") return true;
   return false;
 }
 
-function calculateTimeWaiting(len) {
+const calculateTimeWaiting = len => {
   return (
     len * nodeAnimationTime +
     len * pointerAnimationTime +
@@ -35,11 +35,11 @@ function calculateTimeWaiting(len) {
   );
 }
 
-function animate(node, time, animation) {
+const animate = (node, time, animation) => {
   node.style.animation = `${animation} ${time}ms ease-in-out`;
 }
 
-function createNode(value) {
+const createNode = value => {
   let node = document.createElement("div");
   node.classList.add("node");
   let dataNode = document.createElement("div");
